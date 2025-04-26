@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/Style3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <script>
+        async function loadDatabase(){
+    
+            try{
+                  const SQL = await initSqlJs({ locateFile:() => "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm" });
+                            
+              // Fetch the database file from GitHub
+                  let response = await fetch("https://raw.githubusercontent.com/Abdelrhman-Ahmed1/WebProject-DB/main/PASSWORDS.db");
+                  
+                  let buffer = await response.arrayBuffer();
+                  db = new SQL.Database(new Uint8Array(buffer));
+                  
+                  // Run SQL query
+                  console.log("Database Found")
+            }catch(e){
+                console.log("Error: " + e);
+            }
+            
+        };
+
+        async function getUsers(){
+            
+
+            try {
+                const SQL = await initSqlJs({ locateFile:() => "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm" });
+                            
+              // Fetch the database file from GitHub
+                let response = await fetch("https://raw.githubusercontent.com/Abdelrhman-Ahmed1/WebProject-DB/main/PASSWORDS.db");
+                  
+                let buffer = await response.arrayBuffer();
+                db = new SQL.Database(new Uint8Array(buffer));
+
+                let result = db.exec(`select Username, Status from PASSWORDS;`);
+                
+                
+                let arr = [];
+                
+                result.forEach(item => {arr = JSON.stringify(item['values']).split(',').join('').split('[').join('').split(']').join('').split('"').join(' ').split(' ');});
+                
+                console.log(arr);
+            }
+            catch{
+                alert("Username Not Found");
+                return 0;
+            }
+            
+        }
+    </script>
+    <title>Book List</title>
+    
+</head>
+<body onload=getUsers()>
+    <header class="header">
+        <div id="FullNavBar">
+            <div id="top">
+                <a href="index.html" class="logo">
+                    <img src="images/Online-Library2.svg" alt="Book Store Logo">
+                </a>
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="Admin-Main.html">Home</a>
+                        <a href="About Us.html">About</a>
+                        <a href="contact.html">Contact us</a>
+                        <a href="Register.html" class="sign-in">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Sign Up</span>
+                        </a>
+                    </div>
+                    <div class="search-container nav-right">
+                        <button type="submit" class="search-button">
+                            <img src="images/search Icon.jpg" alt="Search Icon">
+                        </button>
+                        <input type="text" placeholder="Title / Author / Category" class="search-bar" id="searchInput">
+                    </div>
+                </nav>
+            </div>
+        </div>  
+    </header>
+        <h1 id="Label">📚 Book List</h1>
+    <div class="background-image">
+        <div class="container">
+            <div class="Special">
+                <h1>Users List</h1>
+            </div>
+            <br>
+            <div class="books-container">
+                <div class="book-card">
+                      <h2>1. User 1</h2> 
+                      <input type="button" value="Delete User" id="delete">
+                </div>
+                <div class="book-card">
+                    <h2>2. User 2</h2>
+                    <input type="button" value="Delete User" id="delete">
+                </div>
+                <div class="book-card">
+                    <h2>3. User 3</h2>
+                    <input type="button" value="Delete User" id="delete">
+                </div>
+                <div class="book-card">
+                    <h2>4. User 4</h2>
+                    <input type="button" value="Delete User" id="delete">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-container">
+        <!-- Column 1: Logo and Description -->
+        <div class="footer-column">
+            <h2><span class="logo-icon">ON-Line</span> <span class="logo-yellow">Library</span></h2>
+            <p>Your gateway to knowledge and discovery.<br>
+            Explore, learn, and grow with us.</p>
+        </div>
+      
+        <!-- Column 2: Quick Links -->
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+            <li><a href="Select.html">Home</a></li>
+            <li><a href="About Us.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="userProfile.html">Profile</a></li>
+            </ul>
+        </div>
+      
+        <!-- Column 3: Contact -->
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <p><img src="icons/email1.png" class="icon"> info@online-library.com</p>
+            <p><img src="icons/mobile.png" class="icon"> +123 456 7890</p>
+            <div class="social-icons">
+            <img src="icons/facebook.png" alt="Facebook">
+            <img src="icons/Twitter.png" alt="Twitter">
+            <img src="icons/instagram.png" alt="Instagram">
+            <img src="icons/github.png" alt="GitHub">
+            </div>
+      
+        </div>
+        </div>
+        <div class="footer-bottom">
+        <p>&copy; 2025 ON-Line Library. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </body>
+    </html>

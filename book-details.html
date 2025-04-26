@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href= "CSS/book-details.css">
+</head>
+<body>
+    <header class="header">
+        <div id="FullNavBar">
+            <div id="top">
+                <a href="Admin-Main.html" class="logo">
+                    <img src="images/Online-Library2.svg" alt="Book Store Logo">
+                </a>
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="Admin-Main.html">Home</a>
+                        <a href="About Us.html">About</a>
+                        <a href="contact.html">Contact us</a>
+                        <a href="adminProfile.html" class="sign-in">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </div>
+                    <div class="search-container nav-right">
+                        <button type="submit" class="search-button">
+                            <img src="images/search Icon.jpg" alt="Search Icon">
+                        </button>
+                        <input type="text" placeholder="Title / Author / Category" class="search-bar" id="searchInput">
+                    </div>
+                </nav>
+            </div>
+        </div>  
+    </header>
+    <div class="Container1">  
+        <div id="book-details">
+            <!-- Book details will be displayed here -->
+        </div>
+    </div>    
+    <script src="JS/book-details.js" ></script>
+</body>
+</html>
+

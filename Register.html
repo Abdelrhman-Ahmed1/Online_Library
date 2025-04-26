@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="CSS/Register.css">
+  </head>
+
+  <body>
+    <img class="logo" src="images/Online-Library.svg" alt="logo" />
+    <div class="container">
+      <form method="post">
+        <h1>Sign Up</h1>
+
+        <div class="input-box">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            required
+            placeholder="Username"
+          />
+        </div>
+
+        <div class="input-box">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            placeholder="Email"
+          />
+        </div>
+
+        <div class="input-box">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="input-box">
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            required
+            placeholder="Confirm Password"
+          />
+        </div>
+
+        <div class="toggleContainer">
+          <span>User</span>
+          <div class="toggle"></div>
+          <span>Admin</span>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+        <div class="login-link">
+          <p>Already have an account? <a href="Login.html">Login</a></p>
+        </div>
+      </form>
+    </div>
+    <script src="JS/signup_JS.js"></script>
+  </body>
+</html>

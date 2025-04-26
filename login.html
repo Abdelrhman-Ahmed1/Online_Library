@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <Title>Log In</Title>
+    <link rel="stylesheet" href="CSS/Login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="JS\AbdelrhmanJS.js"></script>
+    <script>
+        
+        async function localLogIn(){
+            
+              
+                const enteredUsername = document.getElementById("Username").value;
+                const enteredPassword = document.getElementById("Password").value;
+              
+                let loggedInUser = null;
+                let isAdmin = false;
+              
+                for (let i = 0; i < localStorage.length; i++) {
+                  let key = localStorage.key(i);
+              
+                  // Only check for users (admin_ or user_)
+                  if (key.startsWith("admin_") || key.startsWith("user_")) {
+                    let user = JSON.parse(localStorage.getItem(key));
+              
+                    if (
+                      (user.username === enteredUsername || user.email === enteredUsername) &&
+                      user.password === enteredPassword
+                    ) {
+                      loggedInUser = user;
+                      isAdmin = key.startsWith("admin_");
+                      break;
+                    }
+                  }
+                }
+              
+                if (loggedInUser) {
+                  window.alert(`Welcome, ${loggedInUser.username}! You are logged in as ${isAdmin ? "Admin" : "User"}.`);
+                  if (isAdmin){
+                    reference('Admin-Main.html');
+                  }
+                  else{
+                    reference('Select.html');
+                  }
+                  // You can redirect or store session info here
+                  // Example: localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+                  // window.location.href = "dashboard.html";
+                } else {
+                    alert("Username Not Found");
+                    return 0;
+                }
+              }
+              
+            
+    
+
+
+
+
+
+        async function logIn(){
+
+            
+                
+                let username = document.getElementById("Username").value;
+                let password = document.getElementById("Password").value;
+                
+                let foundUsername = "";
+                let foundPassword = "";
+                let foundStatus = "";
+          
+                if ( !username || !password ){
+                    return 0;
+                }
+          
+                try {
+                    let result = db.exec(`select Username, password, Status from PASSWORDS where Username = '${username}';`);
+                    
+                    
+                    let arr = [];
+                    result.forEach(item => {arr = JSON.stringify(item['values']).split(',');});
+                    foundUsername = arr[0].split('[').join('').split('"').join('');
+                    foundPassword = arr[1].split('"').join('');
+                    foundStatus = arr[2].split(']').join('').split('"').join('');
+                    
+                }
+                catch{
+                    localLogIn();
+                    return 0;
+                }
+          
+                JSON.stringify(password);
+                JSON.stringify(foundPassword);
+                
+                if ( password === foundPassword && foundStatus === "User" ){
+                    reference('Select.html');
+                    
+                    alert(`Log In Successfully, Welcome ${foundUsername}`);
+                    return 0;
+                }
+                else if ( password === foundPassword && foundStatus === "Admin" ){
+                    reference('Admin-Main.html');
+                    
+                    alert("Log In as Admin Successfully");
+                    return 0;
+                }
+                else{
+                    alert("Invalid Password");
+                    return 0;
+                }
+                
+          
+            }
+            
+    async function reference(path){
+        try{
+        window.location.replace(path);
+        window.history.replaceState({}, document.title, path);
+        }
+        catch(e){
+            console.log(e);
+        }
+    }     
+    
+
+    
+    
+
+
+    </script>
+
+</head>
+
+<body onload=loadDatabase()>
+    <img class="logo" src="images/Online-Library.svg" alt="logo">
+    <div class="container">
+        <form action="" method="post">
+            <h1>Log In</h1>
+            <br><br><br>
+
+            <div class="middle input-box">
+                <input type="text" name="Username" id="Username" required placeholder="Username">
+            </div>
+
+            <div class="middle input-box">
+                <input type="password" name="Password" id="Password" required placeholder="Password">
+            </div>
+            <div class="Account">
+                <br>
+                <label for="111"><input type="checkbox" value="Remember me" id="111">  Remember me</label>
+                <br>
+                <a href="#">Forgot your password?</a>
+            </div>
+            <input type="button" value="Log In" class="btn" onclick=logIn()>
+
+            <div class="login-link">
+                <p>Don't have an account? <a href="Register.html">Register</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

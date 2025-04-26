@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ON-Line Library</title>
+  <link rel="stylesheet" href="CSS\Select.css" />
+  <script src="JS\Select.js" defer></script>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/Online-Library2.svg" alt="ON-Line Library Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="Select.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Books</a>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="navBooks">Books</a></li>
+          <li><a href="#" id="navCategory">Category</a></li>
+          <li><a href="#" id="navAuthor">Author</a></li>
+        </ul>
+      </li>
+      <li><a href="About Us.html">About</a></li>
+      <li><a href="Contact.html">Contact us</a></li>
+    </ul>
+    <div class="signin dropdown">
+      <a href="#" id="signin-btn"><img src="images/userIcon1.png" alt="User Icon" style="width: 16px; height: 16px;"> Profile</a>
+      <ul class="dropdown-menu" id="signin-menu">
+        <li><a href="userProfile.html">View Profile</a></li>
+        <li><a href="EditProfile.html">Edit Profile</a></li>
+        <li><a href="Login.html">Sign out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Title / Author / Category" />  
+    <button class="search-btn" id="search-btn">🔍</button>
+  </div>
+
+</header>
+
+<div class="container">
+  <h2 class="section-title"> <img src="images/book1.png" width=50 height=50> Books Section</h2>
+
+  <div class="books-section-search">
+    <div class="top-bar books-search-bar">
+      <input type="text" id="searchInput" class="books-search-input" placeholder="Search by title or author or category..." />
+        <div class="filters books-filter-btns">
+          <button class="books-filter-btn" onclick="filterBooks('All')">All</button>
+          <button class="books-filter-btn" onclick="filterBooks('Islamic')">Islamic</button>
+          <button class="books-filter-btn" onclick="filterBooks('Culture')">Culture</button>
+          <button class="books-filter-btn" onclick="filterBooks('History')">History</button>
+          <button id="filterBtn">Filter Options</button> 
+        </div>
+        </div>
+        <div id="booksContainer" class="books-grid"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>  
+  </div>
+</div>
+
+<!-- نافذة الفلترة -->
+<div id="filterModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2>Select Filter Options</h2>
+
+    <label for="titleSelect">Title:</label>
+    <select id="titleSelect">
+      <option value="All">All</option>
+    </select>
+    <br><br>
+
+    <label for="categorySelect">Category:</label>
+    <select id="categorySelect">
+      <option value="All">All</option>
+      <option value="Islamic">Islamic</option>
+      <option value="Culture">Culture</option>
+      <option value="History">History</option>
+    </select>
+    <br><br>
+    <label for="authorSelect">Author:</label>
+    <select id="authorSelect">
+      <option value="All">All</option>
+      <option value="Author Name 1">Author Name 1</option>
+      <option value="Author Name 2">Author Name 2</option>
+      <option value="Author Name 3">Author Name 3</option>
+    </select>
+    <br><br>
+    <button id="applyFilter">Apply Filter</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+  <!-- Column 1: Logo and Description -->
+  <div class="footer-column">
+      <h2><span class="logo-icon">ON-Line</span> <span class="logo-yellow">Library</span></h2>
+      <p>Your gateway to knowledge and discovery.<br>
+      Explore, learn, and grow with us.</p>
+  </div>
+
+  <!-- Column 2: Quick Links -->
+  <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Books</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">View List</a></li>
+      </ul>
+  </div>
+
+  <!-- Column 3: Contact -->
+  <div class="footer-column">
+      <h3>Contact</h3>
+      <p><img src="icons/email1.png" class="icon"> info@online-library.com</p>
+      <p><img src="icons/mobile.png" class="icon"> +123 456 7890</p>
+      <div class="social-icons">
+      <img src="icons/facebook.png" alt="Facebook">
+      <img src="icons/Twitter.png" alt="Twitter">
+      <img src="icons/instagram.png" alt="Instagram">
+      <img src="icons/github.png" alt="GitHub">
+      </div>
+
+      <div class="subscribe">
+        <form method="POST" onsubmit="handleSubmit(event)">
+          <input type="email" id="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      
+      <div id="message" class="message" style="display: none;">
+        <p>Subscribe to get our latest offers & updates.</p>
+        <p>Thanks for signing up!</p>
+      </div>
+
+  </div>
+  </div>
+  <div class="footer-bottom">
+  <p>&copy; 2025 ON-Line Library. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
