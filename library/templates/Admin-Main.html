@@ -1,0 +1,147 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS\AdminMain.css' %}">
+    <title>Book List</title>
+    
+</head>
+<body>
+    <header class="header">
+        <div id="FullNavBar">
+            <div id="top">
+                <a href="{% url 'admin_dashboard' %}" class="logo">
+                    <img src="{% static 'images\Online-Library2.svg' %}" alt="Book Store Logo">
+                </a>
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="{% url 'admin_dashboard' %}">Home</a>
+                        <a href="{% url 'usersList' %}">View Users</a>
+                        <a href="{% url 'adminsList' %}">View Admins</a>
+                        <a href="AdminProfile" class="sign-in">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                        <a href="{% url 'logout' %}">Sign out</a>
+                    </div>
+                <form method="GET" action="{% url 'admin_dashboard' %}" class="search-container nav-right">
+                    <input type="text" name="q" placeholder="Title / Author / Category" class="search-bar" id="searchInput" value="{{ request.GET.q }}">
+                    <button type="submit" class="search-button">
+                        <img src="{% static 'images/search Icon.jpg' %}" alt="Search Icon">
+                    </button>
+                </form>
+
+                </nav>
+            </div>
+        </div>  
+    </header>
+        <h1 id="Label">📚 Book List</h1>
+    <div class="background-image">
+        <div class="container">
+            <div class="Special">
+                <a href="AddBook" class="Button"> + Add New Book </a>
+            </div>
+            <br>
+         
+
+<div class="books-container">
+    {% for book in books %}
+    <div class="book-card">
+        <img src="{{ book.cover.url }}" alt="Book Cover" style="width: 100%;">
+        <div class="overlay">
+            <a href="{% url 'book_detail' book.id %}" class="btn-overlay">View Details</a>
+        </div>
+        <h3>{{ book.title }}</h3>
+
+
+    <!-- Availability status -->
+    {% if book.copies > 0 %}
+        <p class="availability available">Available</p>
+    {% else %}
+        <p class="availability unavailable">Unavailable</p>
+    {% endif %}
+
+    
+        <div class="book-actions">
+            <form method="POST" action="{% url 'edit_book' book.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="edit-btn">Edit</button>
+            </form>
+            <form method="POST" action="{% url 'delete_book' book.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+
+    </div>
+    {% empty %}
+    <p>No books available.</p>
+    {% endfor %}
+</div>
+
+
+        </div>
+    </div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+  <!-- Column 1: Logo and Description -->
+  <div class="footer-column">
+      <h2><span class="logo-icon">ON-Line</span> <span class="logo-yellow">Library</span></h2>
+      <p>Your gateway to knowledge and discovery.<br>
+      Explore, learn, and grow with us.</p>
+  </div>
+
+  <!-- Column 2: Quick Links -->
+  <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+      <ul>
+      <li><a href="{% url 'admin_dashboard' %}">Home</a></li>
+      <li><a href="{% url 'adminProfile' %}">Profile</a></li>
+      <li><a href="AddBook">Add Book</a></li>
+      <li><a href="UsersList">View Users</a></li>
+      <li><a href="AdminsList">View Admins</a></li>
+      </ul>
+      </ul>
+  </div>
+
+  <!-- Column 3: Contact -->
+  <div class="footer-column">
+      <h3>Contact</h3>
+      <p><img src="{% static 'icons/email1.png'%}" class="icon"> info@online-library.com</p>
+      <p><img src="{% static 'icons/mobile.png'%}" class="icon"> +123 456 7890</p>
+      <div class="social-icons">
+      <img src="{% static 'icons/facebook.png'%}" alt="Facebook">
+      <img src="{% static 'icons/Twitter.png'%}" alt="Twitter">
+      <img src="{% static 'icons/instagram.png'%}" alt="Instagram">
+      <img src="{% static 'icons/github.png'%}" alt="GitHub">
+      </div>
+
+      <div class="subscribe">
+          <form method="POST" onsubmit="handleSubmit(event)">
+              <input type="email" id="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+          </form>
+      </div>
+      
+      <div id="message" class="message" style="display: none;">
+          <p>Subscribe to get our latest offers & updates.</p>
+          <p>Thanks for signing up!</p>
+      </div>
+
+  </div>
+  </div>
+  <div class="footer-bottom">
+  <p>&copy; 2025 ON-Line Library. All rights reserved.</p>
+  </div>
+</footer>
+    </body>
+    </html>

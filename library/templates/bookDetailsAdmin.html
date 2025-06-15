@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }} - Book Details</title>
+    <link rel="stylesheet" href="{% static 'CSS/book-details.css' %}">
+</head>
+<body>
+<header class="header">
+        <div id="FullNavBar">
+            <div id="top">
+                <a href="{% url 'admin_dashboard' %}"class="logo">
+                    <img src="{% static 'images/Online-Library2.svg' %}" alt="Book Store Logo">
+                </a>
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="{% url 'admin_dashboard' %}">Home</a>
+                        <a href="{% url 'usersList' %}">View Users</a>
+                        <a href="{% url 'adminsList' %}">View Admins</a>
+                        <a href="{% url 'adminProfile' %}" class="sign-in">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                        <a href="{% url 'logout' %}">Sign out</a>
+                    </div>
+                </nav>
+            </div>
+        </div>  
+    </header>
+
+<div class="Container1">  
+    <div id="book-details">
+        <img src="{{ book.cover.url }}" alt="{{ book.title }} Cover" style="max-width: 200px;">
+        <h2>{{ book.title }}</h2>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Category:</strong> {{ book.category }}</p>
+        <p><strong>Number of Copies:</strong> {{ book.copies }}</p>
+        <p><strong>Description:</strong> {{ book.description }}</p>
+        <p><strong>Published:</strong> {{ book.published_date }}</p>
+            <!-- Availability status -->
+    {% if book.copies > 0 %}
+        <p class="availability available">Available</p>
+    {% else %}
+        <p class="availability unavailable">Unavailable</p>
+    {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
+
+

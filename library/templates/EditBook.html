@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/Add-Book.css' %}">
+    <title>Edit Book</title>  
+</head>
+<body>
+    <header class="header">
+        <div id="FullNavBar">
+            <div id="top">
+                <a href="{% url 'admin_dashboard' %}" class="logo">
+                    <img src="{% static 'images/Online-Library2.svg'%}" alt="Book Store Logo">
+                </a>
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <a href="{% url 'admin_dashboard' %}">Home</a>
+                        <a href="{% url 'usersList' %}">View Users</a>
+                        <a href="{% url 'adminsList' %}">View Admins</a>
+                        <a href="AdminProfile" class="sign-in">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                        <a href="{% url 'logout' %}">Sign out</a>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="Container1">
+        <h2 id="add-book">Edit Book Details</h2>
+        <form id="book-form" method="POST" enctype="multipart/form-data" action="{% url 'edit_book' book.id %}">
+            {% csrf_token %}
+
+            <div>
+                <label for="id_title">Book Title:</label>
+                <input type="text" name="title" id="id_title" class="U-fill-Width" value="{{ book.title|default_if_none:'' }}">
+            </div>
+
+            <div>
+                <label for="id_author">Author Name:</label>
+                <input type="text" name="author" id="id_author" class="U-fill-Width" value="{{ book.author|default_if_none:'' }}">
+            </div>
+
+            <div>
+                <label for="id_category">Choose Category:</label>
+                <select name="category" id="id_category" class="U-fill-Width">
+                    <option value="">Add new category</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}" {% if book.category.id == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="new-category-div" style="display: none;">
+                <label for="id_new_category">Or Add New Category:</label>
+                <input type="text" name="new_category" id="id_new_category" class="U-fill-Width" placeholder="e.g. Fantasy">
+            </div>
+
+            <div>
+                <label for="id_copies">Number of Copies:</label>
+                <input type="number" name="copies" id="id_copies" min="1" value="{{ book.copies|default_if_none:'1' }}" class="U-fill-Width" >
+            </div>
+
+            <div>
+                <label for="id_description">Description:</label>
+                <textarea name="description" id="id_description" class="U-fill-Width">{{ book.description }}</textarea>
+            </div>
+
+            <div>
+
+                <label for="id_cover">Book Cover:</label>
+            {% if book.cover %}
+                <img src="{{ book.cover.url }}" alt="Current Cover" style="width:100px; height:100px; object-fit:cover; margin-top:10px;">
+            {% endif %}                
+                <input type="file" name="cover" id="id_cover" accept="image/*" >
+            </div>
+
+            <button type="submit" id="button">Save Changes</button>
+        </form>
+    </div>
+
+
+    <script src="{% static 'JS/EditBook.js'%}"></script>
+
+</body>
+</html>
