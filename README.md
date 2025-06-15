@@ -105,7 +105,58 @@ Access the application at `http://127.0.0.1:8000/`.
 
 ## Screenshots
 
-*(Add screenshots here for better clarity, e.g., homepage, book detail, admin panel.)*
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/1.png" alt="Project 1" width="300px"/>
+      <br/>
+      <b>Screen 1</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/2.png" alt="Project 2" width="300px"/>
+      <br/>
+      <b>Screen 2</b>
+    </td>
+    <td align="center">
+    <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/3.png" alt="Project 2" width="300px"/>
+      <br/>
+      <b>Screen 3</b>
+    </td>
+    
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/4.png" alt="Project 3" width="300px"/>
+      <br/>
+      <b>Screen 4</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/5.png" alt="Project 3" width="300px"/>
+      <br/>
+      <b>Screen 5</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/6.png" alt="Project 3" width="300px"/>
+      <br/>
+      <b>Screen 6</b>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/7.png" alt="Project 3" width="300px"/>
+      <br/>
+      <b>Screen 7</b>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Abdelrhman-Ahmed1/Online_Library/blob/54dad08503dbf1cbfe431a2909462538d4ea6ea8/8.png" alt="Project 3" width="300px"/>
+      <br/>
+      <b>Screen 8</b>
+    </td>
+  </tr>
+  
+</table>
 
 ---
 
